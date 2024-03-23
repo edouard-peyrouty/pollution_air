@@ -1,0 +1,67 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <title>Page d'accueil</title>
+</head>
+<body>
+
+    <header>
+        <h1>Renseignement sur la pollution de l'air en 2023</h1>
+        <nav>
+            <ul>
+                <li><a href="\">Accueil</a></li>    
+            </ul>
+        </nav>
+    </header>
+
+    <section class="carte">
+        <img src="{{ url_for('static', filename='images/carte_zas.png') }}" usemap="#organismes">
+        <map name="organismes">
+            <area alt="" title="" href="zone/Organisme/ATMO HAUTS DE FRANCE" coords="345,51,469,97" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO GRAND EST" coords="627,203,489,172" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/AIRPARIF" coords="352,171,430,204" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO NORMANDIE" coords="311,177,216,141" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/AIR BREIZH" coords="176,197,87,233" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/AIR PAYS DE LA LOIRE" coords="271,289,143,253" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO AUVERGNE-RHÔNE-ALPES" coords="589,443,410,399" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO BOURGOGNE-FRANCHE-COMTE" coords="583,330,443,270" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO GUYANE" coords="76,572,16,536" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO NOUVELLE-AQUITAINE" coords="372,394,218,442" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO OCCITANIE" coords="415,565,335,530" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO REUNION" coords="83,782,11,741" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/ATMO SUD" coords="615,532,536,564" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/GWAD'AIR" coords="80,384,8,341" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/HAWA MAYOTTE" coords="79,673,12,619" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/LIG'AIR" coords="315,295,377,265" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/MADININAIR" coords="2,494,91,459" shape="rect">
+            <area target="" alt="" title="" href="zone/Organisme/QUALITAIR CORSE" coords="572,668,646,710" shape="rect">
+        </map>
+    </section>
+
+    <section class="pol">
+            <table class="polluant" border="1">
+                <h2 id="poll">Polluants</h2>
+                <thead>
+                    <tr>
+                        {% for colonne in polluants.columns %}
+                            <th>{{ colonne }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, ligne in polluants.iterrows() %}
+                        <tr>
+                            {% for valeur in ligne %}
+                                <td>{{ valeur }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </section>
+</body>
+</html>

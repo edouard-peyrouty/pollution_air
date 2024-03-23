@@ -1,0 +1,136 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    background-color:rgb(80, 80, 116);
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+header {
+    background-color: #252235;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+h2{
+    text-align: center;
+    color: white;
+}
+
+/*Barre de navigation pour revenir en arrière*/
+
+h1{
+    width: 50px;
+    border-radius: 3px;
+    margin-right: 8px;
+    vertical-align:middle;
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    width: 49%;
+}
+
+nav{
+    width: 50%;
+	display: inline-block;
+    text-align: right;
+}
+
+nav ul {
+	list-style: none;
+    margin: 0;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav ul li a {
+	color :#fff;
+	text-decoration: none;
+	padding: 10px 7px;
+	border-radius: 3px;
+	transition:0.3s ease all;
+}
+nav ul li a:hover {
+	background : #595c7c;
+}
+
+/*Partie de la carte et du tableau des polluant*/
+
+.carte{
+    position:relative;
+    margin: 50px;
+    width: 840px;
+}
+
+.pol{
+    width: 0;
+    height: 0;
+}
+
+.polluant{
+    position: relative;
+    left: 900px;
+    bottom:750px;
+    height: 500px;
+    width: 500px;
+}
+
+h2#poll {
+    position: relative;
+    left: 900px;
+    bottom:750px;
+    width: 500px;
+}
+
+/*Partie avec les tableaux*/
+
+table{
+    border-color: #a999ff;
+    text-align: center;
+    background-color: white;
+    position: relative;
+    left:200px;
+    bottom:25%;
+    height: 500px;
+    width: 1000px;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+table a{
+	text-decoration: none;
+}
+
+/*Partie de l'orga*/
+
+.organisme, .mesure{
+    margin: 50px;
+}
+
+form{
+    text-align: center;
+    position: relative;
+    background-color: #8b90c4;
+    padding: 10px;
+    width: 1025px;
+    left: 240px;
+    color: white;
+    border-radius: 3px;
+}
+
+.courbe img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.histogramme img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

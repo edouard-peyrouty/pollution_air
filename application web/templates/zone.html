@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+        <title>{{nom_zone}}</title>
+    </head>
+    <body>
+
+        <header>
+            <h1> {{nom_zone}} </h1>
+            <nav>
+                <ul>
+                    <li><a href="\">Accueil</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <table class="organisme" border="1">
+            <thead>
+                <tr>
+                    {% for colonne in sous_zones.columns %}
+                        <th>{{ colonne }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, ligne in sous_zones.iterrows() %}
+                    <tr>
+                        {% for valeur in ligne %}
+                            <td>{{ valeur }}</td>
+                        {% endfor %}
+                        {% if echelle != "site" %}
+                            <td><a href="/zone/{{sous_echelle}}/{{ligne[0]}}">En savoir plus</a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <form action="/zone/{{echelle}}/{{zone_id}}" method="post">
+            <h2>Filtrer :</h2>
+            <label for="mois">Mois</label>
+            <select name="mois">
+                {% for i in range(12)%}
+                    <option value="{{i+1}}">{{mois[i]}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="jour">Jour</label>
+            <select name="jour">
+                <option value="%">Tous</option>
+                {% for i in range(1,32)%}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="polluant">Polluant</label>
+            <select name="polluant">
+                {% for polluant in polluants %}
+                    <option value="{{polluant}}">{{polluant}}</option>
+                {% endfor %}
+            </select>
+
+            <label for="seuil">Seuil</label>
+            <select name="seuil">
+                {% for nb in range(0,100,5) %}
+                    <option value="{{nb}}">{{nb}}</option>
+                {% endfor %}
+            </select>
+
+            <input type="submit" value="ok">
+        </form>
+
+
+        <section class="courbe">
+            <h2>Évolution de la concentration de polluant au cours du temps</h2>
+            <img src="{{courbe}}">
+        </section>
+
+        <section class="histogramme">
+            <h2>Concentration des polluants</h2>
+            <img src="{{histogramme}}">
+        </section>
+
+        <section class="mesure">
+            <h2>Mesures dépassant {{seuil}} µg/m3</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        {% for colonne in depasse_seuil.columns %}
+                            <th>{{ colonne }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for index, ligne in depasse_seuil.iterrows() %}
+                        <tr>
+                            {% for valeur in ligne %}
+                                <td>{{ valeur }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </body>
+</html>
